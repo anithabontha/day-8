@@ -1,0 +1,232 @@
+day-8....oop
+
+1. https://github.com/rvsp/typescript-oops/blob/master/Practice/Movie.md				
+
+ans:
+
+class Movie {
+
+  constructor(title,studio,rating='PG') {
+  this.title = title
+  this.studio = studio
+  this.rating= rating
+  
+  }
+  getPG(arr) {
+      let result = []
+      arr.filter(movie => {
+      if(movie.rating==='PG'){
+         result.push(movie)
+         }
+         })
+         
+         return result
+       }
+     }  
+   const movie = new Movie('pusha','deepu production','PG13') 
+   const movie2 = new Movie('doctor','exam','PG')
+   const movie3 = new Movie('cake','test','A')
+   let moviesArr= [movie,movie2,movie3]
+   console.log(movie.getPG(moviesArr))
+
+output:
+PS C:\Users\mypc\Desktop\guvi practice> node script.js
+[ Movie { title: 'doctor', studio: 'exam', rating: 'PG' } ]
+
+
+2. https://github.com/rvsp/typescript-oops/blob/master/Practice/class-circle.md	
+
+code:
+class Circle{
+    setAttribute(radius,color){
+        this.radius=radius;
+        this.color=color;
+  }
+  getradius(){
+      console.log(this.radius);
+  }
+  getcolor(){
+      console.log(this.color);
+  }
+
+getArea(){
+    return 3.142857143*this.radius*this.radius;
+    
+  
+}
+getcircumference(){
+    return 2*3.142857143*this.radius;
+}}
+let Circle1=new Circle();
+Circle1.setAttribute(3,"pink");
+Circle1.getradius();
+Circle1.getcolor();
+Circle1.getArea();
+console.log(Circle1.getArea());
+console.log(Circle1.getcircumference());
+
+Output:
+3
+pink
+28.285714286999998
+18.857142858
+			
+
+3.Write a “person” class to hold all the details.
+
+code:
+
+
+class Person{
+  constructor(name,age){
+    this.name=name;
+    this.age=age;
+    console.log("Iam person class constructor");
+  }
+  getData(){
+    let personData=`
+    Name:${this.name}
+    age:${this.age}`
+    console.log(personData);
+  }}
+ 
+ 
+class Employee extends Person{
+  constructor(name,age,occupation){
+    console.log("Iam employee class constructor");
+    super(name,age);
+    this.occupation=occupation;
+  }
+  getData(){
+    let employeeData=
+    `Name:${this.name}
+    age:${this.age}
+    occupation:${this.occupation}`
+    console.log(employeeData);
+  }}
+ 
+class Address extends Employee{
+  constructor(name,age,occupation,address){
+    console.log("Iam address class constructor");
+  super(name,age,occupation);
+  this.address=address;
+}
+getData(){
+  let addressData=
+  `Name:${this.name}
+  age:${this.age}
+  occupation:${this.occupation}
+  address:${this.address}`
+  console.log(addressData);
+ 
+}}
+let personobj=new Person("Anitha",39);
+personobj.getData();
+let employeeobj=new Employee("Anitha",39,"Full stack developer");
+employeeobj.getData();
+let addressobj= new Address("Anitha",39,"Full stack developer","gollapudi, Andhrapradesh");
+addressobj.getData();
+
+output:
+
+PS C:\Users\mypc\Desktop\guvi practice> node script.js
+Iam person class constructor
+
+    Name:Aravind
+    age:23
+Iam employee class constructor
+Iam person class constructor
+Name:Aravind
+    age:23
+    occupation:Full stack developer
+Iam address class constructor
+Iam employee class constructor
+Iam person class constructor
+Name:Aravind
+  age:23
+  occupation:Full stack developer
+  address:Amalapuram, Andhrapradesh
+
+4.write a class to calculate uber price.
+
+
+ans:
+
+
+class Prices{
+    constructor(cabdisplayname,distanceinKm){
+        this.cabdisplayname=cabdisplayname;
+        this.distanceinKm=distanceinKm;
+        console.log("I am ubercab prices class constructor");
+ 
+    }
+    getData(){
+        let pricesData=`
+           cabdisplayname:${this.cabdisplayname}
+           distanceinKm:${this.distanceinKm}`
+            console.log(pricesData);
+          }}
+    class CabDetails extends Prices{
+              constructor(cabdisplayname,distanceinKm,cabid,durationinminutes){
+                  super(cabdisplayname,distanceinKm);
+                  this.cabid=cabid;
+                  this.durationinminutes=durationinminutes;
+                  console.log("Iam uberCabDetails class constructor");
+ 
+              }
+              getData(){
+                  let CabdetailsData=`
+                  cabid:${this.cabid}
+                  durationinminutes:${this.durationinminutes}`
+                  console.log(CabdetailsData);
+              }}
+    class Costdetails extends CabDetails{
+        constructor(cabdisplayname,distanceinKm,cabid,durationinminutes,costinkm,currency){
+            super(cabdisplayname,distanceinKm,cabid,durationinminutes);
+            this.costinkm=costinkm;
+            this.currency=currency;
+        }
+        getData(){
+            let CostdetailsData=`
+            costinkm:${this.costinkm}
+            currency:${this.currency}`
+            console.log(CostdetailsData);
+        }
+            getCost(){
+                console.log("Total Cost")
+            
+        return this.costinkm*this.distanceinKm;
+
+ 
+        }
+    }
+
+
+       
+let pricesobj=new Prices("Uberwhite",250);
+pricesobj.getData();
+let Cabdetailsobj=new CabDetails("Uberwhite",250,7654,65);
+Cabdetailsobj.getData();
+let costdetailsobj=new Costdetails("UberBlack",50,7654,65,12,"IndianRupee");
+costdetailsobj.getData();
+console.log(costdetailsobj.getCost()); 
+
+output:
+
+PS C:\Users\mypc\Desktop\guvi practice> node script.js
+I am ubercab prices class constructor
+
+           cabdisplayname:Uberwhite
+           distanceinKm:250
+I am ubercab prices class constructor
+Iam uberCabDetails class constructor
+
+                  cabid:7654
+                  durationinminutes:65
+I am ubercab prices class constructor
+Iam uberCabDetails class constructor
+
+            costinkm:12
+            currency:IndianRupee
+Total Cost
+600
